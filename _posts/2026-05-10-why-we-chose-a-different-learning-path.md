@@ -3,12 +3,7 @@ layout: post
 title: "Why We Chose a Different Learning Path"
 date: 2026-05-10
 ---
----
 
-layout: post
-title: "Why We Chose a Different Learning Path"
-date: 2026-05-10
-----------------
 
 As a public school teacher, I never expected my own children to attend anything other than traditional public school. Our daughter changed that narrative.
 
