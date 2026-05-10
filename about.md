@@ -1,11 +1,9 @@
 ---
 layout: page
-title: About
+title: About Red Wolf Learning
 permalink: /about/
 ---
 ------------------
-
-# About Red Wolf Learning
 
 Red Wolf Learning is a growing space for families, educators, and students looking for meaningful, accessible learning resources and support.
 
