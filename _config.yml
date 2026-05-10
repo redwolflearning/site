@@ -1,3 +1,9 @@
 title: Red Wolf Learning
-description: Homeschool math resources and learning tools
+description: Homeschool math resources, printables, and learning tools
 theme: minima
+
+header_pages:
+  - about.md
+  - blog.md
+  - resources.md
+  - disclosure.md
