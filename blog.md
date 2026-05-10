@@ -4,8 +4,14 @@ title: Blog
 permalink: /blog/
 ---
 
-Welcome to the Red Wolf Learning blog.
+# Blog
 
-Here you’ll find homeschool math tips, printable activity ideas, learning tools, and resource recommendations.
+{% raw %}{% for post in site.posts %}{% endraw %}
 
-## Recent Posts
+## [{{ post.title }}]({{ post.url }})
+
+*{{ post.date | date: "%B %d, %Y" }}*
+
+{{ post.excerpt }}
+
+{% raw %}{% endfor %}{% endraw %}
