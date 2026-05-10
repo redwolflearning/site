@@ -6,7 +6,7 @@ permalink: /blog/
 
 # Blog
 
-{% raw %}{% for post in site.posts %}{% endraw %}
+{% for post in site.posts %}
 
 ## [{{ post.title }}]({{ post.url }})
 
@@ -14,4 +14,6 @@ permalink: /blog/
 
 {{ post.excerpt }}
 
-{% raw %}{% endfor %}{% endraw %}
+---
+
+{% endfor %}
