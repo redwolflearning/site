@@ -2,6 +2,7 @@
 layout:	post
 title:	When Our Son Changed Our Perspective Again
 date:	2026-05-11
+description: "How our son’s kindergarten experience led us to rethink learning, behavior, flexibility, and what it means to meet a child where they are."
 ---
 
 <img src="{{ "/assets/images/when_our_son_changed_our_perspecitive_again_redwolflearning_ai.png" | relative_url }}" alt="When Our Son Changed Our Perspective Again" width="250" class="float-left-image">
