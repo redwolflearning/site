@@ -10,7 +10,7 @@ permalink: /blog/
 
 *{{ post.date | date: "%B %d, %Y" }}*
 
-{{ post.excerpt | stip_html | truncatewords:35 }}
+{{ post.description }}
 
 ---
 
