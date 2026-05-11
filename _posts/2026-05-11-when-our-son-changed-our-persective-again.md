@@ -20,7 +20,7 @@ Looking back now, we realize he was not acting out to hurt others or be maliciou
 
 Eventually, we made the difficult decision to homeschool.
 
-At the time, homeschooling felt impossible. I was still working full time while also trying to teach him how to read and build foundational math skills. This was completely outside my comfort zone. I had spent my career teaching high school math — my favorite subjects being Calculus and Geometry. Now I was trying to figure out how to support both the emotional and academic needs of a young child who experienced learning so differently.
+At the time, homeschooling felt impossible. I was still working full time while also trying to teach him how to read and build foundational math skills. This was completely outside my comfort zone. I had previously taught high school math, with Calculus and Geometry being some of my favorite subjects, and now work in high school math curriculum writing. Meanwhile, I was trying to figure out how to support both the emotional and academic needs of a young child who experienced learning so differently.
 
 I felt completely lost.
 
