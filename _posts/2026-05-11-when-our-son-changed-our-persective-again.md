@@ -4,6 +4,8 @@ title:	When Our Son Changed Our Perspective Again
 date:	2026-05-11
 ---
 
+<img src="{{ "/assets/images/when_our_son_changed_our_perspective_again_redwolflearning_ai.png" | relative_url }}" alt="When Our Son Changed Our Perspective Again" width="500">
+
 With our daughter thriving in full-time virtual school, we expected to eventually follow a similar structure with our son. What we quickly realized, however, was that he was very different from his sister.
 
 Where she tends to be quiet and easygoing, our son is strong-willed, energetic, and much more challenging in traditional settings. Before kindergarten, he was evaluated by the county and qualified for both an IEP and state-funded Pre-K due to social and behavioral delays. Even then, we could already see how intelligent he was.
