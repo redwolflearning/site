@@ -4,7 +4,7 @@ title: "Why We Chose a Different Learning Path"
 date: 2026-05-10
 ---
 
-![Why We Chose a Different Learning Path](/assets/images/why_we_chose_a_different_learning_path_redwolflearning_ai.png)
+![Why We Chose a Different Learning Path]({{ "/assets/images/why_we_chose_a_different_learning_path_redwolflearning_ai.png" | relative_url }})
 
 As a public school teacher, I never expected my own children to attend anything other than traditional public school. Our daughter changed that narrative.
 
