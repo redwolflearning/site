@@ -7,3 +7,6 @@ header_pages:
   - blog.md
   - resources.md
   - disclosure.md
+
+sass:
+  style: compressed
