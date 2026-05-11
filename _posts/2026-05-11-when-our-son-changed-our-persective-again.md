@@ -1,7 +1,7 @@
 ---
 layout:	post
 title:	When Our Son Changed Our Perspective Again
-date:	2026-05-10
+date:	2026-05-11
 ---
 
 With our daughter thriving in full-time virtual school, we expected to eventually follow a similar structure with our son. What we quickly realized, however, was that he was very different from his sister.
