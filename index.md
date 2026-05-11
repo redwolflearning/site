@@ -5,20 +5,35 @@ title: Home
 
 # Red Wolf Learning
 
-Homeschool math resources, printable activities, and learning tools designed to build confidence.
+Supporting students, families, and educators through meaningful learning, strong foundations, and flexible educational approaches.
 
-## Start Here
+## Welcome
 
-At Red Wolf Learning, we’re creating simple, practical resources for families and educators who want strong foundational learning without overwhelm.
+Red Wolf Learning was created from both personal and professional experience navigating traditional school, virtual learning, homeschooling, and the unique ways children learn best.
+
+As a certified 6–12 math teacher and parent, I believe learning should build confidence, encourage curiosity, and meet students where they are.
 
 ## What You'll Find
 
-- Kindergarten and early elementary math support
-- Printable learning activities
-- Hands-on number sense resources
-- Homeschool tips
-- Favorite learning tools and recommendations
+- math resources and learning activities
+- homeschool and virtual learning reflections
+- support for diverse learning needs
+- ideas for building conceptual understanding
+- hands-on and interactive learning tools
+- encouragement for families navigating educational challenges
+
+## Our Philosphy
+
+Not all students learn the same way, and that is okay.
+
+Sometimes children thrive when given flexibility, individualized support, and opportunities to truly understand concepts rather than simply memorize them.
+
+Whether you're a parent, teacher, homeschool family, or student, I hope this space provides encouragement, practical ideas, and meaningful resources for your learning journey.
 
 ## Coming Soon
 
-Free printables, blog posts, and resource guides are on the way.
+- blog posts and learning reflections
+- printable resources
+- interactive math activities
+- recommended tools and materials
+- digital learning supports
