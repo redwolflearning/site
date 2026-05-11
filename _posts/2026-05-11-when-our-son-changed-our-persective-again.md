@@ -4,7 +4,7 @@ title:	When Our Son Changed Our Perspective Again
 date:	2026-05-11
 ---
 
-<img src="{{ "/assets/images/when_our_son_changed_our_perspecitive_again_redwolflearning_ai.png" | relative_url }}" alt="When Our Son Changed Our Perspective Again" width="300" class="float-left-image">
+<img src="{{ "/assets/images/when_our_son_changed_our_perspecitive_again_redwolflearning_ai.png" | relative_url }}" alt="When Our Son Changed Our Perspective Again" width="250" class="float-left-image">
 
 With our daughter thriving in full-time virtual school, we expected to eventually follow a similar structure with our son. What we quickly realized, however, was that he was very different from his sister.
 
