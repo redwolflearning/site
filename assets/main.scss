@@ -37,3 +37,29 @@ body {
   padding: 0;
   margin: 10px;
 }
+
+.line {
+  position: absolute;
+  top: 10px;
+  width: 100px;
+  border-top: 2px solid black;
+}
+
+.bondLines {
+  position: relative;
+  height: 60px;
+  width: 220px;
+  margin: 0 auto;
+}
+.leftLine {
+  left: 20px;
+  trasform: rotate(35deg);
+  transform-origin: right center;
+}
+
+.rightLine {
+  right: 20px;
+  transform: rotate(-35deg);
+  transform-origin: left center;
+}
+  
