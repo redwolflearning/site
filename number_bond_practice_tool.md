@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Number Bond Practice Tool
 ---
 <h1>Number Bond Practice Tool</h1>
