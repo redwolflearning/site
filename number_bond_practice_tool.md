@@ -2,7 +2,6 @@
 layout: page
 title: Number Bond Practice Tool
 ---
-<h1>Number Bond Practice Tool</h1>
 <div class="numberBond">
     <input type="text" class="whole" placeholder="Whole">
 
