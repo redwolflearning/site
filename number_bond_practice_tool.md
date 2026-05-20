@@ -6,7 +6,7 @@ title: Number Bond Practice Tool
     <input type="text" class="whole" placeholder="Whole">
 
     <div class="bondLines">
-        <span class="line leftline"></span>
+        <span class="line leftLine"></span>
         <span class="line rightLIne"></span>
     </div>
 
