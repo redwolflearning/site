@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Number Bond Practice Tool
+permalink: /number_bond_tool/
 ---
 <div class="numberBond">
     <input type="text" class="whole" placeholder="Whole">
