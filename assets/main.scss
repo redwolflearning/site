@@ -62,4 +62,40 @@ body {
   transform: rotate(50deg);
   transform-origin: left center;
 }
+
+
+@media (max-width: 600px) {
+  .numberBond input {
+    width: 120px;
+    height: 120px;
+    font-size: 22px;
+    margin: 5px;
+    border-width: 3px;
+  }
+
+  .parts {
+    gap: 20px;
+  }
+
+  .bondLines {
+    width: 140px;
+    height: 40px;
+  }
+
+  .line {
+    width: 60px;
+    top: -10px; 
+  }
+
+  .leftLine {
+    left: -10px;
+    transform: rotate(-45deg); 
+  }
+
+  .rightLine {
+    right: -10px;
+    transform: rotate(45deg);
+  }
+}
+
   
