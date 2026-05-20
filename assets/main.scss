@@ -22,14 +22,14 @@ body {
 .parts {
   display: flex;
   justify-content: center;
-  gap: 60px;
-  margin-top: 30px;
+  gap: 80px;
+  margin-top: 0;
 }
 
 .numberBond input {
   width: 200px;
   height: 200px;
-  border: 2px solid black;
+  border: 5px solid black;
   border-radius: 50%;
   background-color: white;
   text-align: center;
@@ -40,26 +40,26 @@ body {
 
 .line {
   position: absolute;
-  top: 10px;
+  top: -30px;
   width: 100px;
-  border-top: 2px solid black;
+  border-top: 5px solid black;
 }
 
 .bondLines {
   position: relative;
-  height: 60px;
+  height: 30px;
   width: 220px;
   margin: 0 auto;
 }
 .leftLine {
-  left: 20px;
-  trasform: rotate(35deg);
+  left: -40px;
+  trasform: rotate(-50deg);
   transform-origin: right center;
 }
 
 .rightLine {
-  right: 20px;
-  transform: rotate(-35deg);
+  right: -40px;
+  transform: rotate(50deg);
   transform-origin: left center;
 }
   
