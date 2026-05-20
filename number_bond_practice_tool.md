@@ -7,7 +7,7 @@ title: Number Bond Practice Tool
 
     <div class="bondLines">
         <span class="line leftLine"></span>
-        <span class="line rightLIne"></span>
+        <span class="line rightLine"></span>
     </div>
 
   <div class="parts">
