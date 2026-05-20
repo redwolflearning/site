@@ -6,4 +6,6 @@ permalink: /resources/
 
 This page will house free and recommended learning resources.
 
-More resources coming soon!
+### [Interactive Number Bond Mat](/number-bond-tool/)
+A simple, distraction-free digital tool for practicing part-part-whole relationships. Perfect for use on tablets or desktops during math lessons.
+
