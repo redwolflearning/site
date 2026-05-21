@@ -3,6 +3,67 @@
 
 @import "minima";
 
+.float-left-image {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  max-width: 350px;
+}
+
+body {
+  background-color: #fff4f4;
+}
+
+.numberBond {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.parts {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-top: 0;
+}
+
+.numberBond input {
+  width: 200px;
+  height: 200px;
+  border: 5px solid black;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  font-size: 30px;
+  padding: 0;
+  margin: 10px;
+}
+
+.line {
+  position: absolute;
+  top: -30px;
+  width: 100px;
+  border-top: 5px solid black;
+}
+
+.bondLines {
+  position: relative;
+  height: 30px;
+  width: 220px;
+  margin: 0 auto;
+}
+.leftLine {
+  left: -40px;
+  transform: rotate(-50deg);
+  transform-origin: right center;
+}
+
+.rightLine {
+  right: -40px;
+  transform: rotate(50deg);
+  transform-origin: left center;
+}
+
+
 @media (max-width: 600px) {
   .numberBond input {
     width: 120px;
@@ -37,3 +98,5 @@
     transform: rotate(45deg);
   }
 }
+
+  
