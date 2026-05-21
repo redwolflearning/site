@@ -10,3 +10,6 @@ header_pages:
 
 sass:
   style: compressed
+
+kramdown:
+  math_engine: mathjax
