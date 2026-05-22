@@ -4,10 +4,14 @@ title: Resources
 permalink: /resources/
 ---
 
-This page will house free and recommended learning resources.
+## Interactive Learning Tools
 
 ### [Interactive Number Bond Mat](/site/number-bond-tool/)
 A simple, distraction-free digital tool for practicing part-part-whole relationships. Perfect for use on tablets or desktops during math lessons.
+
+<hr>
+
+## Printable Worksheets
 
 <div style="overflow: auto; margin-bottom: 20px;">
   <img src="/site/assets/images/number_bonds_partners_of_10.png" alt="Partners of 10 Worksheet" class="thumbNail float-left-image">
