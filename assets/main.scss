@@ -99,4 +99,17 @@ body {
   }
 }
 
-  
+.thumbNail {
+  width: 50px; /* Adjust this to the size you want */
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s; /* Optional: makes it feel interactive */
+}
+
+.thumbNail:hover {
+  transform: scale(1.05); /* Optional: slight zoom when hovering */
+}
+
