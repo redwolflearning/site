@@ -10,4 +10,4 @@ This page will house free and recommended learning resources.
 A simple, distraction-free digital tool for practicing part-part-whole relationships. Perfect for use on tablets or desktops during math lessons.
 
 ### [Free Download] Partners of 10 Number Bond Worksheet
-![Partners of 10 Worksheet Preview](/site/assets/images/number_bonds_partners_of_10.png{: .thumbNail }) [Download the PDF Here](/site/assets/downloads/number_bonds_partners_of_10.pdf)
+![Partners of 10 Worksheet Preview](/site/assets/images/number_bonds_partners_of_10.png){: .thumbNail } [Download the PDF Here](/site/assets/downloads/number_bonds_partners_of_10.pdf)
