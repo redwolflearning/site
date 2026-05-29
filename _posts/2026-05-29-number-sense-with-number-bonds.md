@@ -4,6 +4,7 @@ title: "Number Sense with Number Bonds"
 date: 2026-05-29
 description: "I had never even seen a number bond until my son started school. Now, I realize they are the secret to building deep math confidence."
 ---
+{% include mathjax.html %}
 <img src="{{ "/assets/images/number_sense_with_number_bonds_pin1.png" | relative_url }}" alt="Why We Chose a Different Learning Path" width="250" class="float-left-image">
 
 Number sense is the groundwork for all math, but it is about so much more than just counting. It is the realization that a number actually represents a specific amount, and that amount can be broken apart or put back together. It might seem clear to us, but to a young mind, numbers are abstract. Math is simply a language we created to make sense of our world—from why the moon orbits the Earth to why an apple falls from a tree.
