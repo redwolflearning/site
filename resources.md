@@ -8,8 +8,12 @@ permalink: /resources/
 
 <div class="resource-category-content">
   
-  ### [Interactive Number Bond Mat](/site/number-bond-tool/)
-  A simple, distraction-free digital tool for practicing part-part-whole relationships. Perfect for use on tablets or desktops during math lessons.
+<div class="resource-category-content">
+  <div style="overflow: auto; margin-bottom: 20px;">
+    <h3><a href="/site/number-bond-tool/">Interactive Number Bond Mat</a></h3>
+    <p>A simple, distraction-free digital tool for practicing part-part-whole relationships. Perfect for use on tablets or desktops during math lessons.</p>
+  </div>
+</div>
 
 </div>
 
