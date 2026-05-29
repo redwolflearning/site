@@ -30,10 +30,3 @@ Sometimes children thrive when given flexibility, individualized support, and op
 
 Whether you're a parent, teacher, homeschool family, or student, I hope this space provides encouragement, practical ideas, and meaningful resources for your learning journey.
 
-## Coming Soon
-
-- blog posts and learning reflections
-- printable resources
-- interactive math activities
-- recommended tools and materials
-- digital learning supports
