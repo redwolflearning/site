@@ -12,7 +12,7 @@ If the foundation of number sense is missing, kids (and adults) often grow up ha
 One of my favorite tools for building this understanding is the number bond. I’ll be honest: I had never seen one until my son started school, but the moment I did, I realized it was exactly how my brain worked. A number bond is a way to visualize how a number breaks down. Take the number 5, for example; it can be split into 2 and 3. From those three numbers, a child can "see" the relationship behind four different equations:
 
 {% include mathjax.html %}
-$$ \begin{aligned} 2+3&=5 \\\\ 3+2&=5 \\\\ 5-2&=3 \\\\ 5-3&=2 \end{aligned} $$
+$$ \begin{aligned} 2+3&=5 \\ 3+2&=5 \\ 5-2&=3 \\ 5-3&=2 \end{aligned} $$
 
 Using hands-on tools like [Number Cubes](https://amzn.to/4wXgEnH) or even small candies helps make these facts feel concrete. The more a student interacts with the parts, the quicker they become at combining and separating them. Eventually, the bond isn't needed anymore, but the mental map of how numbers work stays with them forever.
 
