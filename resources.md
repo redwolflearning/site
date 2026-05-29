@@ -36,7 +36,7 @@ permalink: /resources/
 
     <h3>Large Printable Number Bond Mat</h3>
     <p>A full-page number bond mat designed for hands-on practice. Print this out and slide it into a dry-erase pocket to use with markers, number cubes, or snacks!</p>
-  <p><a href="/site/assets/downloads/large-number-bond-mat.pdf" class="download-button">Download the Large Mat PDF</a></p>
+  <p><a href="/site/assets/downloads/large-number-bond-mat.pdf" class="download-button">Download the PDF Here</a></p>
   </div>
 
 </div>
