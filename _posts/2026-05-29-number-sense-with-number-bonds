@@ -1,0 +1,19 @@
+---
+layout: post
+title: "Number Sense with Number Bonds"
+date: 2026-05-29
+description: "I had never even seen a number bond until my son started school. Now, I realize they are the secret to building deep math confidence."
+---
+
+Number sense is the groundwork for all math, but it is about so much more than just counting. It is the realization that a number actually represents a specific amount, and that amount can be broken apart or put back together. It might seem clear to us, but to a young mind, numbers are abstract. Math is simply a language we created to make sense of our world—from why the moon orbits the Earth to why an apple falls from a tree.
+
+If the foundation of number sense is missing, kids (and adults) often grow up hating math. I believe that’s because we were taught to memorize processes and tricks rather than being given a chance to understand the numbers themselves. The "new math" isn't actually new; it is just a shift toward understanding these relationships.
+
+One of my favorite tools for building this understanding is the number bond. I’ll be honest: I had never seen one until my son started school, but the moment I did, I realized it was exactly how my brain worked. A number bond is a way to visualize how a number breaks down. Take the number 5, for example; it can be split into 2 and 3. From those three numbers, a child can "see" the relationship behind four different equations:
+
+{% include mathjax.html %}
+$$ \begin{aligned} 2+3&=5 \ 3+2&=5 \ 5-2&=3 \ 5-3&=2 \end{aligned} $$
+
+Using hands-on tools like Number Cubes or even small candies helps make these facts feel concrete. The more a student interacts with the parts, the quicker they become at combining and separating them. Eventually, the bond isn't needed anymore, but the mental map of how numbers work stays with them forever.
+
+To help you practice this at home, I’ve put together three resources. The first is a worksheet focused on the "Partners of 10," and the second is an interactive tool on this site that you can use with any addition or subtraction problem. My favorite, however, is the large printable number bond mat. You can slide it into a Dry Erase Pocket to turn it into a reusable whiteboard for daily practice. Whether you use markers or blocks, the goal is the same: moving past memorization and building true math confidence.
