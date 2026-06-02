@@ -4,6 +4,7 @@ title: "Math in the Wild: Building Number Sense Without Worksheets"
 date: 2026-06-02
 description: "When my kids' endless math questions started to wear me down, I flipped the script. Discover how a simple car-ride game turned into a lesson in deep number sense—plus tips for finding math in snacks, toys, and hula hoops."
 ---
+<img src="{{ "/assets/images/math-in-the-wild.jpg" | relative_url }}" alt="Math in the wild." class="float-left-image">
 
 Both of my kids went through the phase of asking me endless math questions. I am not sure if this is just my house because they know I love math, but they would fire questions at me constantly: "What's 3 plus 7? What's 10 minus 2?" I won't lie—it got old, quick. Our adult brains are constantly juggling a thousand things we should be doing or need to do. Just when I wanted to say, "Okay, that's enough math for today," I flipped the script instead.
 
