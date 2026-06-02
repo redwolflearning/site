@@ -34,3 +34,5 @@ The goal is not to drill facts—it is to help your child see the relationships 
 1. [Interactive Number Bond Tool](/site/number-bond-tool.html) – Practice part-part-whole on any device.
 2. [Large Printable Number Bond Mat](/site/resources/) – Perfect for hands-on practice with counters, markers, or snacks.
 3. [Partners of 10 Worksheet](/site/resources/) – Master the all-important "ways to make 10."
+
+Affiliate link: I may earn a small commission from purchases made through links on this page. Thanks for supporting Red Wolf Learning.
