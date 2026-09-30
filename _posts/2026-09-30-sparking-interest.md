@@ -37,8 +37,8 @@ A few honest reasons these worked better for us:
 
 These are the two we've used, the best we've tried so far:
 
-- **Official Minecraft Workbook: Kindergarten** (ages 5–6), reading and math, 96 pages, 100+ stickers: https://amzn.to/4dhBx4S
-- **Official Minecraft Workbook: Grade 1** (ages 6–7), phonics, addition/subtraction, place value, spelling and grammar: https://amzn.to/3TVG6LD
+- [**Official Minecraft Workbook: Kindergarten**](https://amzn.to/4dhBx4S) (ages 5–6), reading and math, 96 pages, 100+ stickers
+- [**Official Minecraft Workbook: Grade 1**](https://amzn.to/3TVG6LD) (ages 6–7), phonics, addition/subtraction, place value, spelling and grammar
 
 ## How to do this with your own kid
 
