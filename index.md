@@ -22,7 +22,7 @@ As a certified 6–12 math teacher and parent, I believe learning should build c
 - hands-on and interactive learning tools
 - encouragement for families navigating educational challenges
 
-## Our Philosphy
+## Our Philosophy
 
 Not all students learn the same way, and that is okay.
 
