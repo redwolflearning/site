@@ -5,6 +5,10 @@ date: 2026-09-30
 description: "When every workbook I bought turned into a battle, I stopped picking the curriculum first. Discover how following my son's Minecraft obsession made practice easier, plus tips for finding a workbook your kid won't fight."
 ---
 
+{% include mathjax.html %}
+<img src="{{ "/assets/images/stop-fighting-the-workbook.png" | relative_url }}" alt="Blog thumbnail: text reads 'Stop Fighting the Workbook, find the one that makes it easier' beside the Official Minecraft Workbooks for Kindergarten and Grade 1." class="float-left-image">
+
+
 If you've ever bought the "perfect" workbook, the one with the great reviews, the aligned standards, the beautiful scope and sequence, and watched your child stare at it like it's written in another language, this post is for you.
 
 I've been there. As a certified math teacher, I know exactly what a good workbook looks like. As a homeschool mom, I know that doesn't matter if nobody will open it.
