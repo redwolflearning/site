@@ -119,3 +119,9 @@ body {
   display: block;     /* Ensures the math stays on its own line */
 }
 
+
+
+/* Hide the Minima theme's automatic "subscribe via RSS" line on the home page */
+.rss-subscribe {
+  display: none;
+}
