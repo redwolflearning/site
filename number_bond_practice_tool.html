@@ -4,18 +4,267 @@ title: Number Bond Practice Tool
 permalink: /number-bond-tool/
 ---
 
-<div class="numberBond">
-    <input type="text" class="whole" placeholder="Whole">
+<style>
+#bondTool .nb-circle {
+  width: 200px;
+  height: 200px;
+  border: 5px solid black;
+  border-radius: 50%;
+  background-color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 10px;
+  box-sizing: border-box;
+}
+#bondTool .nb-circle.given {
+  background-color: #eef4ff;
+}
+#bondTool .nb-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+#bondTool .nb-presets {
+  margin-bottom: 10px;
+}
+#bondTool button {
+  font-size: 17px;
+  padding: 9px 16px;
+  margin: 4px;
+  border: 3px solid #333;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+#bondTool button:hover {
+  background: #f0f0f0;
+}
+#bondTool button.active {
+  background: #333;
+  color: #fff;
+}
+#bondTool .nb-chips button {
+  width: 54px;
+  padding: 8px 0;
+  font-size: 17px;
+}
+#bondTool .nb-chips {
+  max-width: 520px;
+  margin: 0 auto 10px;
+}
+#bondTool .nb-feedback {
+  min-height: 32px;
+  font-size: 22px;
+  font-weight: bold;
+}
+#bondTool .nb-feedback.good {
+  color: #2e7d32;
+}
+#bondTool .nb-feedback.bad {
+  color: #c62828;
+}
+#bondTool .nb-streak {
+  font-size: 19px;
+}
+@media (max-width: 600px) {
+  #bondTool .nb-circle {
+    width: 120px;
+    height: 120px;
+    font-size: 22px;
+    margin: 5px;
+    border-width: 3px;
+  }
+  #bondTool .nb-chips button {
+    width: 46px;
+    font-size: 15px;
+  }
+}
+</style>
 
-    <div class="bondLines">
-        <span class="line leftLine"></span>
-        <span class="line rightLine"></span>
-    </div>
+<div class="numberBond" id="bondTool">
+  <p class="nb-label">Which numbers should we practice?</p>
+  <div class="nb-presets">
+    <button type="button" data-preset="five">Bonds of 5</button>
+    <button type="button" data-preset="ten">Bonds of 10</button>
+    <button type="button" data-preset="to10" class="active">All to 10</button>
+    <button type="button" data-preset="to20">All to 20</button>
+  </div>
+  <div class="nb-chips" id="chips"></div>
+
+  <div class="nb-circle" id="wholeCircle">?</div>
+
+  <div class="bondLines">
+    <span class="line leftLine"></span>
+    <span class="line rightLine"></span>
+  </div>
 
   <div class="parts">
-    <input type="text" class="part" placeholder="Part">
-    <input type="text" class="part" placeholder="Part">
+    <div id="slotA"></div>
+    <div id="slotB"></div>
   </div>
-  
+
+  <p class="nb-feedback" id="feedback" aria-live="polite"></p>
+
+  <div>
+    <button type="button" id="checkBtn">Check</button>
+    <button type="button" id="newBtn">New problem</button>
+  </div>
+
+  <p class="nb-streak">Streak: <strong id="streak">0</strong></p>
 </div>
 
+<script>
+(function() {
+  var chipsEl = document.getElementById('chips');
+  var wholeEl = document.getElementById('wholeCircle');
+  var slotA = document.getElementById('slotA');
+  var slotB = document.getElementById('slotB');
+  var feedbackEl = document.getElementById('feedback');
+  var streakEl = document.getElementById('streak');
+  var checkBtn = document.getElementById('checkBtn');
+  var newBtn = document.getElementById('newBtn');
+  var presetBtns = document.querySelectorAll('#bondTool .nb-presets button');
+
+  var answerInput = document.createElement('input');
+  answerInput.setAttribute('type', 'text');
+  answerInput.setAttribute('inputmode', 'numeric');
+  answerInput.setAttribute('pattern', '[0-9]*');
+  answerInput.setAttribute('autocomplete', 'off');
+  answerInput.setAttribute('placeholder', '?');
+  answerInput.setAttribute('aria-label', 'Type the missing part');
+
+  var selected = {};
+  var whole = 0, missing = 0, streak = 0, locked = false, problemId = 0;
+
+  function renderChips() {
+    chipsEl.innerHTML = '';
+    for (var n = 2; n <= 20; n++) {
+      (function(num) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = num;
+        if (selected[num]) b.className = 'active';
+        b.addEventListener('click', function() {
+          if (selected[num]) {
+            var count = 0;
+            for (var k in selected) if (selected[k]) count++;
+            if (count <= 1) return;
+            delete selected[num];
+          } else {
+            selected[num] = true;
+          }
+          clearPresetActive();
+          renderChips();
+          newProblem();
+        });
+        chipsEl.appendChild(b);
+      })(n);
+    }
+  }
+
+  function clearPresetActive() {
+    for (var i = 0; i < presetBtns.length; i++) {
+      presetBtns[i].className = '';
+    }
+  }
+
+  function applyPreset(name) {
+    selected = {};
+    if (name === 'five') { selected[5] = true; }
+    else if (name === 'ten') { selected[10] = true; }
+    else if (name === 'to10') { for (var n = 2; n <= 10; n++) selected[n] = true; }
+    else if (name === 'to20') { for (var m = 2; m <= 20; m++) selected[m] = true; }
+    clearPresetActive();
+    for (var i = 0; i < presetBtns.length; i++) {
+      if (presetBtns[i].getAttribute('data-preset') === name) presetBtns[i].className = 'active';
+    }
+    renderChips();
+    newProblem();
+  }
+
+  function pickWhole() {
+    var keys = [];
+    for (var k in selected) if (selected[k]) keys.push(parseInt(k, 10));
+    return keys[Math.floor(Math.random() * keys.length)];
+  }
+
+  function newProblem() {
+    locked = false;
+    problemId++;
+    whole = pickWhole();
+    var given = Math.floor(Math.random() * (whole + 1));
+    missing = whole - given;
+    wholeEl.textContent = whole;
+
+    var givenDiv = document.createElement('div');
+    givenDiv.className = 'nb-circle given';
+    givenDiv.textContent = given;
+
+    slotA.innerHTML = '';
+    slotB.innerHTML = '';
+    if (Math.random() < 0.5) {
+      slotA.appendChild(givenDiv);
+      slotB.appendChild(answerInput);
+    } else {
+      slotA.appendChild(answerInput);
+      slotB.appendChild(givenDiv);
+    }
+    answerInput.value = '';
+    setFeedback('', '');
+    answerInput.focus();
+  }
+
+  function setFeedback(msg, cls) {
+    feedbackEl.textContent = msg;
+    feedbackEl.className = 'nb-feedback' + (cls ? ' ' + cls : '');
+  }
+
+  function check() {
+    if (locked) return;
+    var val = answerInput.value.trim();
+    if (val === '') {
+      setFeedback('Type a number first.', 'bad');
+      return;
+    }
+    var guess = parseInt(val, 10);
+    if (isNaN(guess)) {
+      setFeedback('Numbers only, please.', 'bad');
+      answerInput.value = '';
+      answerInput.focus();
+      return;
+    }
+    if (guess === missing) {
+      locked = true;
+      streak++;
+      streakEl.textContent = streak;
+      setFeedback('Correct!', 'good');
+      var id = problemId;
+      setTimeout(function() { if (id === problemId) newProblem(); }, 1300);
+    } else {
+      streak = 0;
+      streakEl.textContent = streak;
+      setFeedback('Not quite, try again.', 'bad');
+      answerInput.value = '';
+      answerInput.focus();
+    }
+  }
+
+  checkBtn.addEventListener('click', check);
+  newBtn.addEventListener('click', newProblem);
+  answerInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') check();
+  });
+  for (var i = 0; i < presetBtns.length; i++) {
+    (function(btn) {
+      btn.addEventListener('click', function() {
+        applyPreset(btn.getAttribute('data-preset'));
+      });
+    })(presetBtns[i]);
+  }
+
+  for (var n = 2; n <= 10; n++) selected[n] = true;
+  renderChips();
+  newProblem();
+})();
+</script>
