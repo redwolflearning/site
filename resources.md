@@ -28,7 +28,7 @@ permalink: /resources/
   
     <h3>Thanksgiving Color by the Missing Part (Free)</h3>
     <p>Two Thanksgiving coloring pages with real math inside: solve each number sentence to find the missing part, then color to match the key. The pumpkin page uses wholes of 5 to 7, and the turkey page mixes wholes up to 10. Perfect for Kindergarten and 1st Grade math centers, morning work, and homeschool.</p>
-    <p><a href="/site/assets/downloads/Thanksgiving-Color-by-the-Missing-Part-Freebie-Red-Wolf-Learning.pdf" class="download-button">Download the PDF Here</a></p>
+    <p><a href="https://www.teacherspayteachers.com/Product/Thanksgiving-Color-by-Number-FREEBIE-Missing-Part-Practice-K-1st-Math-18171888" class="download-button">Get it Free on TPT</a></p>
   </div>
 
   <div style="overflow: auto; margin-bottom: 20px;">
@@ -50,4 +50,5 @@ permalink: /resources/
 </div>
 
 <hr>
+
 
