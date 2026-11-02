@@ -24,6 +24,14 @@ permalink: /resources/
 <div class="resource-category-content">
   
   <div style="overflow: auto; margin-bottom: 20px;">
+    <img src="/site/assets/images/thanksgiving-color-by-missing-part.png" alt="Thanksgiving Color by the Missing Part free coloring pages" class="thumbNail float-left-image">
+  
+    <h3>Thanksgiving Color by the Missing Part (Free)</h3>
+    <p>Two Thanksgiving coloring pages with real math inside: solve each number sentence to find the missing part, then color to match the key. The pumpkin page uses wholes of 5 to 7, and the turkey page mixes wholes up to 10. Perfect for Kindergarten and 1st Grade math centers, morning work, and homeschool.</p>
+    <p><a href="/site/assets/downloads/Thanksgiving-Color-by-the-Missing-Part-Freebie-Red-Wolf-Learning.pdf" class="download-button">Download the PDF Here</a></p>
+  </div>
+
+  <div style="overflow: auto; margin-bottom: 20px;">
     <img src="/site/assets/images/number_bonds_partners_of_10.png" alt="Partners of 10 Worksheet" class="thumbNail float-left-image">
   
     <h3>Partners of 10 Number Bond Worksheet</h3>
@@ -42,3 +50,4 @@ permalink: /resources/
 </div>
 
 <hr>
+
