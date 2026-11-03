@@ -154,7 +154,19 @@ a:hover, a:focus {
 .hero-sub { font-size: 19px; color: var(--ink-soft); margin-bottom: 20px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-// Mini practice widget in the hero
+// Hero image card (replaces the practice widget in the hero)
+.hero-card {
+  flex: 1 1 300px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(20, 48, 94, 0.08);
+}
+.hero-card img { width: 100%; height: auto; border-radius: 10px; display: block; }
+.hero-card-caption { color: var(--ink-soft); font-size: 15px; margin: 10px 4px 2px; }
+
+// Mini practice widget (now in its own section lower on the page)
 .try-card {
   flex: 1 1 300px;
   background: #fff;
