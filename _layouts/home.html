@@ -15,22 +15,9 @@ layout: default
       </div>
     </div>
 
-    <div class="try-card">
-      <h2>Try it: Number Bonds</h2>
-      <p class="bond-problem" id="bondProblemText">_ + 3 = 7</p>
-      <p id="bondDesc" class="try-note" aria-live="polite">Whole 7, part 3. What is the missing part?</p>
-      <div class="bond-controls">
-        <label for="bondInput">Missing part</label>
-        <input id="bondInput" type="number" inputmode="numeric" aria-label="Missing part answer">
-        <button class="btn btn-navy" id="bondCheck" type="button">Check</button>
-        <button class="btn btn-outline" id="bondNew" type="button">New Problem</button>
-      </div>
-      <p class="bond-feedback" id="bondFeedback" aria-live="polite"></p>
-      <div class="bond-levels" role="group" aria-label="Difficulty">
-        <button type="button" id="lvlEasy" aria-pressed="true">Wholes 5 to 7</button>
-        <button type="button" id="lvlHard" aria-pressed="false">Wholes to 10</button>
-      </div>
-      <p class="try-note">Want more levels? <a href="{{ "/number-bond-tool/" | relative_url }}">Open the full practice tool</a>.</p>
+    <div class="hero-card">
+      <img src="{{ "/assets/images/thanksgiving-color-by-missing-part.png" | relative_url }}" alt="Thanksgiving Color by the Missing Part free coloring pages cover">
+      <p class="hero-card-caption">Free right now: two Thanksgiving coloring pages with real math inside, for grades K-1.</p>
     </div>
   </section>
 
@@ -77,6 +64,25 @@ layout: default
       <p><a class="btn btn-navy" href="{{ "/assets/downloads/large-number-bond-mat.pdf" | relative_url }}">Download the PDF</a></p>
     </div>
   </div>
+
+  <h2>Practice Right Now</h2>
+    <div class="try-card">
+      <h2>Try it: Number Bonds</h2>
+      <p class="bond-problem" id="bondProblemText">_ + 3 = 7</p>
+      <p id="bondDesc" class="try-note" aria-live="polite">Whole 7, part 3. What is the missing part?</p>
+      <div class="bond-controls">
+        <label for="bondInput">Missing part</label>
+        <input id="bondInput" type="number" inputmode="numeric" aria-label="Missing part answer">
+        <button class="btn btn-navy" id="bondCheck" type="button">Check</button>
+        <button class="btn btn-outline" id="bondNew" type="button">New Problem</button>
+      </div>
+      <p class="bond-feedback" id="bondFeedback" aria-live="polite"></p>
+      <div class="bond-levels" role="group" aria-label="Difficulty">
+        <button type="button" id="lvlEasy" aria-pressed="true">Wholes 5 to 7</button>
+        <button type="button" id="lvlHard" aria-pressed="false">Wholes to 10</button>
+      </div>
+      <p class="try-note">Want more levels? <a href="{{ "/number-bond-tool/" | relative_url }}">Open the full practice tool</a>.</p>
+    </div>
 
   {{ content }}
 
