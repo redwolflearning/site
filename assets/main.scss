@@ -198,6 +198,7 @@ a:hover, a:focus {
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 18px;
   margin: 18px 0 8px;
+  align-items: stretch;
 }
 .start-card, .res-card, .post-card {
   background: #fff;
@@ -207,8 +208,10 @@ a:hover, a:focus {
   box-shadow: 0 4px 12px rgba(20, 48, 94, 0.05);
   display: flex;
   flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
 }
-// Uniform card rhythm: same image height, buttons pinned to the bottom
+// Uniform card rhythm: same image height, matched title/description space, buttons pinned to the bottom
 .res-card img {
   width: 100%;
   height: 230px;
@@ -218,11 +221,13 @@ a:hover, a:focus {
   margin-bottom: 12px;
   padding: 8px;
 }
+.res-card h3 { min-height: 2.5em; }
+.res-card p:nth-of-type(1) { min-height: 5.2em; }
 .start-card p:last-child, .res-card p:last-child, .post-card p:last-child {
   margin-top: auto;
   padding-top: 10px;
 }
-.res-card .btn { padding: 10px 18px; font-size: 16px; }
+.res-card .btn { padding: 10px 16px; font-size: 15px; white-space: nowrap; }
 .start-num { color: var(--gold-deep); font-size: 30px; font-weight: 700; } // darkened gold (accessibility fix)
 .start-card h3, .res-card h3, .post-card h3 { margin-top: 6px; }
 .post-card .post-meta { color: var(--gold-deep); font-weight: 600; }
