@@ -1,0 +1,151 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Homeschool Math Resources</p>
+      <h1>Math that meets kids where they are.</h1>
+      <p class="hero-sub">Supporting students, families, and educators through meaningful learning, strong foundations, and flexible educational approaches.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="https://www.teacherspayteachers.com/Product/Thanksgiving-Color-by-Number-FREEBIE-Missing-Part-Practice-K-1st-Math-18171888">Get the Free Thanksgiving Printable</a>
+        <a class="btn btn-navy" href="{{ "/resources/" | relative_url }}">Browse Resources</a>
+      </div>
+    </div>
+
+    <div class="try-card">
+      <h2>Try it: Number Bonds</h2>
+      <p class="bond-problem" id="bondProblemText">_ + 3 = 7</p>
+      <p id="bondDesc" class="try-note" aria-live="polite">Whole 7, part 3. What is the missing part?</p>
+      <div class="bond-controls">
+        <label for="bondInput">Missing part</label>
+        <input id="bondInput" type="number" inputmode="numeric" aria-label="Missing part answer">
+        <button class="btn btn-navy" id="bondCheck" type="button">Check</button>
+        <button class="btn btn-outline" id="bondNew" type="button">New Problem</button>
+      </div>
+      <p class="bond-feedback" id="bondFeedback" aria-live="polite"></p>
+      <div class="bond-levels" role="group" aria-label="Difficulty">
+        <button type="button" id="lvlEasy" aria-pressed="true">Wholes 5 to 7</button>
+        <button type="button" id="lvlHard" aria-pressed="false">Wholes to 10</button>
+      </div>
+      <p class="try-note">Want more levels? <a href="{{ "/number-bond-tool/" | relative_url }}">Open the full practice tool</a>.</p>
+    </div>
+  </section>
+
+  <h2>Start Here</h2>
+  <div class="start-grid">
+    <div class="start-card">
+      <span class="start-num" aria-hidden="true">01</span>
+      <h3>Grab a free printable</h3>
+      <p>Start with a ready-to-print math activity, like the Thanksgiving Color by the Missing Part freebie.</p>
+      <p><a href="{{ "/resources/" | relative_url }}">See free resources</a></p>
+    </div>
+    <div class="start-card">
+      <span class="start-num" aria-hidden="true">02</span>
+      <h3>Practice right now</h3>
+      <p>The interactive number bond tool gives instant feedback and lets you pick the numbers your child is working on.</p>
+      <p><a href="{{ "/number-bond-tool/" | relative_url }}">Open the tool</a></p>
+    </div>
+    <div class="start-card">
+      <span class="start-num" aria-hidden="true">03</span>
+      <h3>Read and get ideas</h3>
+      <p>Honest posts about homeschool and virtual learning, morning routines, and tools that actually earn their keep.</p>
+      <p><a href="{{ "/blog/" | relative_url }}">Read the blog</a></p>
+    </div>
+  </div>
+
+  <h2>Featured Resources</h2>
+  <div class="card-grid">
+    <div class="res-card">
+      <img src="{{ "/assets/images/thanksgiving-color-by-missing-part.png" | relative_url }}" alt="Thanksgiving Color by the Missing Part free coloring pages cover">
+      <h3>Thanksgiving Color by the Missing Part</h3>
+      <p>Two free coloring pages with real math inside. Solve each number sentence, check the key, and color. Grades K-1.</p>
+      <p><a class="btn btn-gold" href="https://www.teacherspayteachers.com/Product/Thanksgiving-Color-by-Number-FREEBIE-Missing-Part-Practice-K-1st-Math-18171888">Get it Free on TPT</a></p>
+    </div>
+    <div class="res-card">
+      <img src="{{ "/assets/images/number_bonds_partners_of_10.png" | relative_url }}" alt="Partners of 10 number bond worksheet preview">
+      <h3>Partners of 10 Worksheet</h3>
+      <p>Practice finding missing parts and bridging to equations with this clean, conceptual worksheet.</p>
+      <p><a class="btn btn-navy" href="{{ "/assets/downloads/number_bonds_partners_of_10.pdf" | relative_url }}">Download the PDF</a></p>
+    </div>
+    <div class="res-card">
+      <img src="{{ "/assets/images/large-mat-preview.png" | relative_url }}" alt="Large printable number bond mat preview">
+      <h3>Large Number Bond Mat</h3>
+      <p>A full-page mat for hands-on practice. Slide it into a dry-erase pocket and use it with markers, cubes, or snacks.</p>
+      <p><a class="btn btn-navy" href="{{ "/assets/downloads/large-number-bond-mat.pdf" | relative_url }}">Download the PDF</a></p>
+    </div>
+  </div>
+
+  {{ content }}
+
+  {%- if site.posts.size > 0 -%}
+    <h2>Latest Posts</h2>
+    <div class="card-grid">
+      {%- for post in site.posts limit:3 -%}
+      <div class="post-card">
+        <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+        <p>{{ post.description }}</p>
+        <p><a href="{{ post.url | relative_url }}">Read the post</a></p>
+      </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <div class="cta-band">
+    <h2>New resources go up on Pinterest first</h2>
+    <p>Follow Red Wolf Learning for fresh printables, tools, and homeschool encouragement.</p>
+    <p><a class="btn btn-navy" href="https://www.pinterest.com/redwolflearning/">Follow on Pinterest</a></p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var whole = 7, part = 3, maxWhole = 7, streak = 0;
+  var problemEl = document.getElementById('bondProblemText');
+  var descEl = document.getElementById('bondDesc');
+  var input = document.getElementById('bondInput');
+  var feedback = document.getElementById('bondFeedback');
+  var lvlEasy = document.getElementById('lvlEasy');
+  var lvlHard = document.getElementById('lvlHard');
+
+  function render() {
+    problemEl.textContent = '_ + ' + part + ' = ' + whole;
+    descEl.textContent = 'Whole ' + whole + ', part ' + part + '. What is the missing part? Current streak: ' + streak + '.';
+  }
+  function newProblem() {
+    var min = (maxWhole === 7) ? 5 : 6;
+    whole = Math.floor(Math.random() * (maxWhole - min + 1)) + min;
+    part = Math.floor(Math.random() * (whole - 1)) + 1;
+    input.value = '';
+    feedback.textContent = '';
+    render();
+    input.focus();
+  }
+  document.getElementById('bondCheck').addEventListener('click', function () {
+    var answer = parseInt(input.value, 10);
+    if (isNaN(answer)) { feedback.textContent = 'Type your answer in the box first.'; return; }
+    if (answer === whole - part) {
+      streak++;
+      feedback.textContent = 'That is right. ' + answer + ' and ' + part + ' make ' + whole + '. Streak: ' + streak + '.';
+      render();
+    } else {
+      streak = 0;
+      feedback.textContent = 'Not yet. Try again: what number plus ' + part + ' makes ' + whole + '?';
+      render();
+    }
+  });
+  input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { document.getElementById('bondCheck').click(); } });
+  document.getElementById('bondNew').addEventListener('click', newProblem);
+  lvlEasy.addEventListener('click', function () {
+    maxWhole = 7; lvlEasy.setAttribute('aria-pressed', 'true'); lvlHard.setAttribute('aria-pressed', 'false'); newProblem();
+  });
+  lvlHard.addEventListener('click', function () {
+    maxWhole = 10; lvlHard.setAttribute('aria-pressed', 'true'); lvlEasy.setAttribute('aria-pressed', 'false'); newProblem();
+  });
+  render();
+})();
+</script>
