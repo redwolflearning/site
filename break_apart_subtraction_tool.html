@@ -86,6 +86,12 @@ permalink: /break-apart-subtraction/
   margin: 2px auto 8px;
   max-width: 460px;
 }
+#subTool .sb-hint-area {
+  display: none;
+}
+#subTool .sb-hint-area.open {
+  display: block;
+}
 #subTool .sb-card {
   background: #fffaf0;
   border: 3px solid #333;
@@ -188,8 +194,13 @@ permalink: /break-apart-subtraction/
     <button type="button" data-mode="mixed">Mixed</button>
   </div>
 
-  <div class="sb-blocks" id="blocks" aria-hidden="true"></div>
-  <p class="sb-caption" id="blocksCaption"></p>
+  <div>
+    <button type="button" id="hintBtn" aria-expanded="false">Show a hint</button>
+  </div>
+  <div class="sb-hint-area" id="hintArea">
+    <div class="sb-blocks" id="blocks" aria-hidden="true"></div>
+    <p class="sb-caption" id="blocksCaption"></p>
+  </div>
 
   <div class="sb-card">
     <div class="sb-row">
@@ -235,6 +246,8 @@ permalink: /break-apart-subtraction/
   var streakEl = document.getElementById('streak');
   var checkBtn = document.getElementById('checkBtn');
   var newBtn = document.getElementById('newBtn');
+  var hintBtn = document.getElementById('hintBtn');
+  var hintArea = document.getElementById('hintArea');
   var modeBtns = document.querySelectorAll('#subTool .sb-modes button');
 
   var fields = {
@@ -252,6 +265,8 @@ permalink: /break-apart-subtraction/
   var streak = 0;
   var locked = false;
   var problemId = 0;
+  var hintOpen = false;
+  var hintRun = 0;
   var cur = null;
 
   function rand(min, max) {
@@ -303,8 +318,9 @@ permalink: /break-apart-subtraction/
     }
   }
 
-  function renderBlocks() {
+  function showHintBlocks() {
     var id = problemId;
+    var run = hintRun;
     drawBlocks(cur.tA, cur.oA, false);
     if (!cur.regroup) {
       captionEl.textContent = cur.A + ' is ' + cur.tA + ' tens and ' + cur.oA + ' ones.';
@@ -312,15 +328,38 @@ permalink: /break-apart-subtraction/
     }
     captionEl.textContent = 'Uh oh, ' + cur.oA + ' ones is not enough. Watch one ten break open...';
     setTimeout(function() {
-      if (id !== problemId) return;
+      if (id !== problemId || run !== hintRun || !hintOpen) return;
       var rods = blocksEl.querySelectorAll('.sb-rod');
       if (rods.length) rods[rods.length - 1].className = 'sb-rod breaking';
     }, 1000);
     setTimeout(function() {
-      if (id !== problemId) return;
+      if (id !== problemId || run !== hintRun || !hintOpen) return;
       drawBlocks(cur.tA - 1, cur.oA + 10, true);
       captionEl.textContent = 'One ten broke open! Now ' + cur.A + ' is ' + (cur.tA - 1) + ' tens and ' + (cur.oA + 10) + ' ones.';
     }, 2000);
+  }
+
+  function closeHint() {
+    hintOpen = false;
+    hintRun++;
+    hintArea.className = 'sb-hint-area';
+    hintBtn.textContent = 'Show a hint';
+    hintBtn.setAttribute('aria-expanded', 'false');
+    blocksEl.innerHTML = '';
+    captionEl.textContent = '';
+  }
+
+  function toggleHint() {
+    if (hintOpen) {
+      closeHint();
+      return;
+    }
+    hintOpen = true;
+    hintRun++;
+    hintArea.className = 'sb-hint-area open';
+    hintBtn.textContent = 'Hide hint';
+    hintBtn.setAttribute('aria-expanded', 'true');
+    showHintBlocks();
   }
 
   function setFeedback(msg, cls) {
@@ -341,7 +380,7 @@ permalink: /break-apart-subtraction/
       f.className = 'sb-blank';
     }
     setFeedback('', '');
-    renderBlocks();
+    closeHint();
     fields.tT.focus();
   }
 
@@ -387,6 +426,7 @@ permalink: /break-apart-subtraction/
 
   checkBtn.addEventListener('click', check);
   newBtn.addEventListener('click', newProblem);
+  hintBtn.addEventListener('click', toggleHint);
   for (var k = 0; k < fieldKeys.length; k++) {
     fields[fieldKeys[k]].addEventListener('keydown', function(e) {
       if (e.key === 'Enter') check();
