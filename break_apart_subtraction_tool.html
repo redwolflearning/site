@@ -1,0 +1,408 @@
+---
+layout: page
+title: Break-Apart Subtraction Practice Tool
+permalink: /break-apart-subtraction/
+---
+
+<style>
+#subTool .sb-modes {
+  margin-bottom: 10px;
+}
+#subTool .sb-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+#subTool button {
+  font-size: 17px;
+  padding: 9px 16px;
+  margin: 4px;
+  border: 3px solid #333;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+#subTool button:hover {
+  background: #f0f0f0;
+}
+#subTool button.active {
+  background: #333;
+  color: #fff;
+}
+#subTool .sb-blocks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  max-width: 460px;
+  min-height: 26px;
+  margin: 4px auto 2px;
+}
+#subTool .sb-rod {
+  width: 52px;
+  height: 20px;
+  background: #8fc1f0;
+  border: 2px solid #33506e;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #10314f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+#subTool .sb-one {
+  width: 20px;
+  height: 20px;
+  background: #ffd97a;
+  border: 2px solid #8a6d1f;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #5c4a10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+#subTool .sb-rod.breaking {
+  animation: sb-break 0.9s ease forwards;
+}
+#subTool .sb-one.new {
+  animation: sb-pop 0.5s ease;
+}
+@keyframes sb-break {
+  40% { transform: rotate(-7deg) scale(1.1); background: #f2a65a; }
+  100% { transform: scale(0.5); opacity: 0.2; }
+}
+@keyframes sb-pop {
+  from { transform: scale(0.3); }
+  to { transform: scale(1); }
+}
+#subTool .sb-caption {
+  min-height: 24px;
+  font-size: 16px;
+  margin: 2px auto 8px;
+  max-width: 460px;
+}
+#subTool .sb-card {
+  background: #fffaf0;
+  border: 3px solid #333;
+  border-radius: 14px;
+  max-width: 460px;
+  margin: 0 auto 14px;
+  padding: 20px 12px 16px;
+  font-size: 34px;
+  font-weight: bold;
+  color: #222;
+}
+#subTool .sb-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 6px 0;
+}
+#subTool .sb-given {
+  min-width: 86px;
+  text-align: right;
+}
+#subTool .sb-sign {
+  width: 28px;
+  text-align: center;
+}
+#subTool .sb-answer-row {
+  border-top: 3px solid #333;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+#subTool input.sb-blank {
+  width: 76px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #1b3a5c;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid #333;
+  border-radius: 6px 6px 0 0;
+  padding: 2px 0;
+  box-sizing: border-box;
+}
+#subTool input.sb-blank:focus {
+  outline: none;
+  background: #eef4ff;
+}
+#subTool input.sb-blank.right {
+  background: #e2f2e4;
+  border-bottom-color: #2e7d32;
+  color: #2e7d32;
+}
+#subTool input.sb-blank.fix {
+  background: #fdecea;
+  border-bottom-color: #c62828;
+}
+#subTool .sb-feedback {
+  min-height: 32px;
+  font-size: 22px;
+  font-weight: bold;
+}
+#subTool .sb-feedback.good {
+  color: #2e7d32;
+}
+#subTool .sb-feedback.bad {
+  color: #c62828;
+}
+#subTool .sb-streak {
+  font-size: 19px;
+}
+@media (max-width: 600px) {
+  #subTool .sb-card {
+    font-size: 26px;
+    padding: 14px 6px 12px;
+  }
+  #subTool .sb-given {
+    min-width: 66px;
+  }
+  #subTool input.sb-blank {
+    width: 58px;
+    font-size: 23px;
+  }
+  #subTool .sb-sign {
+    width: 20px;
+  }
+  #subTool .sb-row {
+    gap: 6px;
+  }
+}
+</style>
+
+<div class="breakApartSubtraction" id="subTool">
+  <p>Practice subtracting two-digit numbers by breaking them apart. Split both numbers into tens and ones, subtract each part, then put the answer back together.</p>
+
+  <p class="sb-label">Pick a challenge:</p>
+  <div class="sb-modes">
+    <button type="button" data-mode="without" class="active">Without Regrouping</button>
+    <button type="button" data-mode="with">With Regrouping</button>
+    <button type="button" data-mode="mixed">Mixed</button>
+  </div>
+
+  <div class="sb-blocks" id="blocks" aria-hidden="true"></div>
+  <p class="sb-caption" id="blocksCaption"></p>
+
+  <div class="sb-card">
+    <div class="sb-row">
+      <span class="sb-given" id="givenTop">38</span>
+      <span class="sb-sign">=</span>
+      <input class="sb-blank" id="f_tT" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="?" aria-label="First number, tens part" tabindex="1">
+      <span class="sb-sign">+</span>
+      <input class="sb-blank" id="f_tO" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="?" aria-label="First number, ones part" tabindex="2">
+    </div>
+    <div class="sb-row">
+      <span class="sb-given" id="givenBottom">- 14</span>
+      <span class="sb-sign">=</span>
+      <input class="sb-blank" id="f_bT" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="?" aria-label="Second number, tens part" tabindex="3">
+      <span class="sb-sign">+</span>
+      <input class="sb-blank" id="f_bO" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="?" aria-label="Second number, ones part" tabindex="4">
+    </div>
+    <div class="sb-row sb-answer-row">
+      <input class="sb-blank" id="f_aTotal" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="?" aria-label="Answer" tabindex="7">
+      <span class="sb-sign">=</span>
+      <input class="sb-blank" id="f_aT" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="?" aria-label="Answer, tens part" tabindex="5">
+      <span class="sb-sign">+</span>
+      <input class="sb-blank" id="f_aO" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="?" aria-label="Answer, ones part" tabindex="6">
+    </div>
+  </div>
+
+  <p class="sb-feedback" id="feedback" aria-live="polite"></p>
+
+  <div>
+    <button type="button" id="checkBtn">Check my card</button>
+    <button type="button" id="newBtn">New card</button>
+  </div>
+
+  <p class="sb-streak">Streak: <strong id="streak">0</strong></p>
+</div>
+
+<script>
+(function() {
+  var givenTop = document.getElementById('givenTop');
+  var givenBottom = document.getElementById('givenBottom');
+  var blocksEl = document.getElementById('blocks');
+  var captionEl = document.getElementById('blocksCaption');
+  var feedbackEl = document.getElementById('feedback');
+  var streakEl = document.getElementById('streak');
+  var checkBtn = document.getElementById('checkBtn');
+  var newBtn = document.getElementById('newBtn');
+  var modeBtns = document.querySelectorAll('#subTool .sb-modes button');
+
+  var fields = {
+    tT: document.getElementById('f_tT'),
+    tO: document.getElementById('f_tO'),
+    bT: document.getElementById('f_bT'),
+    bO: document.getElementById('f_bO'),
+    aT: document.getElementById('f_aT'),
+    aO: document.getElementById('f_aO'),
+    aTotal: document.getElementById('f_aTotal')
+  };
+  var fieldKeys = ['tT', 'tO', 'bT', 'bO', 'aT', 'aO', 'aTotal'];
+
+  var mode = 'without';
+  var streak = 0;
+  var locked = false;
+  var problemId = 0;
+  var cur = null;
+
+  function rand(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1));
+  }
+
+  function genProblem() {
+    var regroup;
+    if (mode === 'with') regroup = true;
+    else if (mode === 'without') regroup = false;
+    else regroup = Math.random() < 0.5;
+
+    var A = 0, B = 0, tA = 0, oA = 0, tB = 0, oB = 0, ok = false, guard = 0;
+    while (!ok && guard < 600) {
+      guard++;
+      A = rand(21, 99);
+      B = rand(11, A - 1);
+      tA = Math.floor(A / 10); oA = A % 10;
+      tB = Math.floor(B / 10); oB = B % 10;
+      if (!regroup) ok = (oA >= oB) && (tA > tB);
+      else ok = (oA < oB) && (tA - 1 > tB);
+    }
+    if (!regroup) {
+      cur = { A: A, B: B, regroup: false,
+        tT: tA * 10, tO: oA, bT: tB * 10, bO: oB,
+        aT: (tA - tB) * 10, aO: oA - oB, aTotal: A - B };
+    } else {
+      cur = { A: A, B: B, regroup: true,
+        tT: (tA - 1) * 10, tO: oA + 10, bT: tB * 10, bO: oB,
+        aT: (tA - 1 - tB) * 10, aO: (oA + 10) - oB, aTotal: A - B };
+    }
+    cur.tA = tA; cur.oA = oA;
+  }
+
+  function drawBlocks(tens, ones, markNewOnes) {
+    blocksEl.innerHTML = '';
+    var i, d;
+    for (i = 0; i < tens; i++) {
+      d = document.createElement('div');
+      d.className = 'sb-rod';
+      d.textContent = '10';
+      blocksEl.appendChild(d);
+    }
+    for (i = 0; i < ones; i++) {
+      d = document.createElement('div');
+      d.className = 'sb-one' + (markNewOnes && i >= ones - 10 ? ' new' : '');
+      d.textContent = '1';
+      blocksEl.appendChild(d);
+    }
+  }
+
+  function renderBlocks() {
+    var id = problemId;
+    drawBlocks(cur.tA, cur.oA, false);
+    if (!cur.regroup) {
+      captionEl.textContent = cur.A + ' is ' + cur.tA + ' tens and ' + cur.oA + ' ones.';
+      return;
+    }
+    captionEl.textContent = 'Uh oh, ' + cur.oA + ' ones is not enough. Watch one ten break open...';
+    setTimeout(function() {
+      if (id !== problemId) return;
+      var rods = blocksEl.querySelectorAll('.sb-rod');
+      if (rods.length) rods[rods.length - 1].className = 'sb-rod breaking';
+    }, 1000);
+    setTimeout(function() {
+      if (id !== problemId) return;
+      drawBlocks(cur.tA - 1, cur.oA + 10, true);
+      captionEl.textContent = 'One ten broke open! Now ' + cur.A + ' is ' + (cur.tA - 1) + ' tens and ' + (cur.oA + 10) + ' ones.';
+    }, 2000);
+  }
+
+  function setFeedback(msg, cls) {
+    feedbackEl.textContent = msg;
+    feedbackEl.className = 'sb-feedback' + (cls ? ' ' + cls : '');
+  }
+
+  function newProblem() {
+    locked = false;
+    problemId++;
+    genProblem();
+    givenTop.textContent = cur.A;
+    givenBottom.textContent = '- ' + cur.B;
+    for (var i = 0; i < fieldKeys.length; i++) {
+      var f = fields[fieldKeys[i]];
+      f.value = '';
+      f.disabled = false;
+      f.className = 'sb-blank';
+    }
+    setFeedback('', '');
+    renderBlocks();
+    fields.tT.focus();
+  }
+
+  function check() {
+    if (locked) return;
+    var i, f, val;
+    for (i = 0; i < fieldKeys.length; i++) {
+      f = fields[fieldKeys[i]];
+      if (!f.disabled && f.value.trim() === '') {
+        setFeedback('Fill in every blank first.', 'bad');
+        f.focus();
+        return;
+      }
+    }
+    var allRight = true;
+    for (i = 0; i < fieldKeys.length; i++) {
+      var key = fieldKeys[i];
+      f = fields[key];
+      if (f.disabled) continue;
+      val = parseInt(f.value.trim(), 10);
+      if (!isNaN(val) && val === cur[key]) {
+        f.className = 'sb-blank right';
+        f.disabled = true;
+      } else {
+        f.className = 'sb-blank fix';
+        allRight = false;
+      }
+    }
+    if (allRight) {
+      locked = true;
+      streak++;
+      streakEl.textContent = streak;
+      setFeedback('You did it!', 'good');
+      var id = problemId;
+      setTimeout(function() { if (id === problemId) newProblem(); }, 1700);
+    } else {
+      setFeedback('So close! Fix the highlighted boxes.', 'bad');
+      for (i = 0; i < fieldKeys.length; i++) {
+        if (!fields[fieldKeys[i]].disabled) { fields[fieldKeys[i]].focus(); break; }
+      }
+    }
+  }
+
+  checkBtn.addEventListener('click', check);
+  newBtn.addEventListener('click', newProblem);
+  for (var k = 0; k < fieldKeys.length; k++) {
+    fields[fieldKeys[k]].addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') check();
+    });
+  }
+  for (var m = 0; m < modeBtns.length; m++) {
+    (function(btn) {
+      btn.addEventListener('click', function() {
+        mode = btn.getAttribute('data-mode');
+        for (var j = 0; j < modeBtns.length; j++) modeBtns[j].className = '';
+        btn.className = 'active';
+        newProblem();
+      });
+    })(modeBtns[m]);
+  }
+
+  newProblem();
+})();
+</script>
