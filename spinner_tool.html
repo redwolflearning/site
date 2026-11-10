@@ -1,0 +1,286 @@
+---
+layout: page
+title: Number Spinner
+permalink: /spinner/
+---
+
+<style>
+#spinTool {
+  text-align: center;
+}
+#spinTool .sp-intro {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+#spinTool .sp-stage {
+  position: relative;
+  width: min(420px, 92vw);
+  margin: 0 auto;
+}
+#spinTool .sp-pointer {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  z-index: 3;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 28px solid #c0392b;
+}
+#spinTool svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: 50% 50%;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+#spinTool .sp-result {
+  font-size: 26px;
+  font-weight: bold;
+  color: #1f3a5f;
+  min-height: 36px;
+  margin: 16px 0 8px;
+}
+#spinTool button {
+  font-size: 17px;
+  padding: 9px 16px;
+  margin: 4px;
+  border: 3px solid #1f3a5f;
+  border-radius: 12px;
+  background: #fff;
+  color: #1f3a5f;
+  cursor: pointer;
+}
+#spinTool button:hover {
+  background: #eef4fa;
+}
+#spinTool button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+#spinTool .sp-spin {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 12px 38px;
+  background: #e3b341;
+  color: #1f3a5f;
+}
+#spinTool .sp-spin:hover {
+  background: #eec25e;
+}
+#spinTool .sp-controls {
+  margin-top: 22px;
+}
+#spinTool .sp-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+#spinTool input {
+  font-size: 18px;
+  padding: 9px 12px;
+  width: min(340px, 85vw);
+  text-align: center;
+  border: 3px solid #1f3a5f;
+  border-radius: 10px;
+  color: #1f3a5f;
+}
+#spinTool .sp-note {
+  font-size: 15px;
+  color: #555;
+  max-width: 460px;
+  margin: 8px auto 14px;
+}
+#spinTool .sp-error {
+  color: #c0392b;
+  font-weight: bold;
+  min-height: 22px;
+}
+</style>
+
+<div id="spinTool">
+  <p class="sp-intro">A clean classroom spinner. Choose the numbers, then spin.</p>
+
+  <div class="sp-stage">
+    <div class="sp-pointer" aria-hidden="true"></div>
+    <svg id="wheelSvg" viewBox="0 0 420 420" role="img" aria-label="Spinner wheel"></svg>
+  </div>
+
+  <p class="sp-result" id="spinResult" aria-live="polite">Tap Spin when you are ready.</p>
+
+  <div>
+    <button type="button" id="spinBtn" class="sp-spin">Spin</button>
+  </div>
+
+  <div class="sp-controls">
+    <p class="sp-label"><label for="valuesInput">Numbers on the spinner</label></p>
+    <input type="text" id="valuesInput" value="1, 1, 2, 2, 3, 3">
+    <p class="sp-note" id="countNote">6 sections. Type any numbers separated by commas. Repeats are fine, each one gets an equal slice.</p>
+    <p class="sp-label">Quick picks</p>
+    <div>
+      <button type="button" data-preset="game">Game 1-3</button>
+      <button type="button" data-preset="4">1 to 4</button>
+      <button type="button" data-preset="6">1 to 6</button>
+      <button type="button" data-preset="10">1 to 10</button>
+      <button type="button" data-preset="12">1 to 12</button>
+    </div>
+    <p class="sp-error" id="spinError" role="alert"></p>
+  </div>
+</div>
+
+<script>
+(function() {
+  var svg = document.getElementById('wheelSvg');
+  var spinBtn = document.getElementById('spinBtn');
+  var resultEl = document.getElementById('spinResult');
+  var input = document.getElementById('valuesInput');
+  var errorEl = document.getElementById('spinError');
+  var countEl = document.getElementById('countNote');
+  var NS = 'http://www.w3.org/2000/svg';
+  var PALETTE = [
+    { bg: '#1f3a5f', fg: '#ffffff' },
+    { bg: '#a8cbe8', fg: '#1f3a5f' },
+    { bg: '#f2ce84', fg: '#1f3a5f' },
+    { bg: '#ffffff', fg: '#1f3a5f' },
+    { bg: '#7fb2d9', fg: '#1f3a5f' },
+    { bg: '#e3b341', fg: '#1f3a5f' }
+  ];
+  var values = [1, 1, 2, 2, 3, 3];
+  var rotation = 0;
+  var spinning = false;
+
+  function polar(cx, cy, r, deg) {
+    var rad = deg * Math.PI / 180;
+    return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
+  }
+
+  function buildWheel() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var n = values.length;
+    var a = 360 / n;
+    var R = 200;
+    var C = 210;
+    var i, start, end, p1, p2, path, col, mid, lp, t;
+    for (i = 0; i < n; i++) {
+      start = -90 + i * a;
+      end = start + a;
+      p1 = polar(C, C, R, start);
+      p2 = polar(C, C, R, end);
+      path = document.createElementNS(NS, 'path');
+      path.setAttribute('d', 'M ' + C + ' ' + C + ' L ' + p1[0].toFixed(2) + ' ' + p1[1].toFixed(2) +
+        ' A ' + R + ' ' + R + ' 0 ' + (a > 180 ? 1 : 0) + ' 1 ' + p2[0].toFixed(2) + ' ' + p2[1].toFixed(2) + ' Z');
+      col = PALETTE[i % PALETTE.length];
+      path.setAttribute('fill', col.bg);
+      path.setAttribute('stroke', '#ffffff');
+      path.setAttribute('stroke-width', '2');
+      svg.appendChild(path);
+      mid = start + a / 2;
+      lp = polar(C, C, R * 0.68, mid);
+      t = document.createElementNS(NS, 'text');
+      t.setAttribute('x', lp[0].toFixed(2));
+      t.setAttribute('y', lp[1].toFixed(2));
+      t.setAttribute('fill', col.fg);
+      t.setAttribute('font-size', n <= 6 ? '36' : (n <= 10 ? '30' : '24'));
+      t.setAttribute('font-weight', 'bold');
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('dominant-baseline', 'central');
+      t.setAttribute('transform', 'rotate(' + (mid + 90) + ' ' + lp[0].toFixed(2) + ' ' + lp[1].toFixed(2) + ')');
+      t.textContent = values[i];
+      svg.appendChild(t);
+    }
+    var ring = document.createElementNS(NS, 'circle');
+    ring.setAttribute('cx', C);
+    ring.setAttribute('cy', C);
+    ring.setAttribute('r', R - 3);
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', '#1f3a5f');
+    ring.setAttribute('stroke-width', '6');
+    svg.appendChild(ring);
+    var hub = document.createElementNS(NS, 'circle');
+    hub.setAttribute('cx', C);
+    hub.setAttribute('cy', C);
+    hub.setAttribute('r', '26');
+    hub.setAttribute('fill', '#e3b341');
+    hub.setAttribute('stroke', '#1f3a5f');
+    hub.setAttribute('stroke-width', '4');
+    svg.appendChild(hub);
+    countEl.textContent = n + ' sections. Type any numbers separated by commas. Repeats are fine, each one gets an equal slice.';
+  }
+
+  function parseValues() {
+    var raw = input.value.split(',');
+    var out = [];
+    for (var i = 0; i < raw.length; i++) {
+      var tok = raw[i].trim();
+      if (tok === '') continue;
+      var num = Number(tok);
+      if (!isFinite(num)) return null;
+      out.push(num);
+    }
+    return out;
+  }
+
+  function applyValues() {
+    var parsed = parseValues();
+    if (!parsed || parsed.length < 2 || parsed.length > 16) {
+      errorEl.textContent = 'Use between 2 and 16 numbers, separated by commas.';
+      return false;
+    }
+    errorEl.textContent = '';
+    values = parsed;
+    svg.style.transition = 'none';
+    svg.style.transform = 'rotate(0deg)';
+    rotation = 0;
+    buildWheel();
+    resultEl.textContent = 'Tap Spin when you are ready.';
+    return true;
+  }
+
+  function spin() {
+    if (spinning) return;
+    spinning = true;
+    spinBtn.disabled = true;
+    resultEl.textContent = 'Spinning...';
+    var n = values.length;
+    var a = 360 / n;
+    var k = Math.floor(Math.random() * n);
+    var thetaK = (k + 0.5) * a;
+    var delta = ((-thetaK - rotation) % 360 + 360) % 360;
+    rotation = rotation + 5 * 360 + delta;
+    svg.style.transition = 'transform 4.4s cubic-bezier(.12,.72,.06,1)';
+    svg.style.transform = 'rotate(' + rotation + 'deg)';
+    var done = function() {
+      if (!spinning) return;
+      spinning = false;
+      spinBtn.disabled = false;
+      resultEl.textContent = 'You spun a ' + values[k] + '!';
+    };
+    svg.addEventListener('transitionend', done);
+    setTimeout(done, 5200);
+  }
+
+  spinBtn.addEventListener('click', spin);
+  svg.addEventListener('click', spin);
+  input.addEventListener('change', applyValues);
+
+  var presets = document.querySelectorAll('#spinTool [data-preset]');
+  for (var i = 0; i < presets.length; i++) {
+    presets[i].addEventListener('click', function() {
+      var p = this.getAttribute('data-preset');
+      if (p === 'game') {
+        input.value = '1, 1, 2, 2, 3, 3';
+      } else {
+        var arr = [];
+        for (var j = 1; j <= parseInt(p, 10); j++) arr.push(j);
+        input.value = arr.join(', ');
+      }
+      applyValues();
+    });
+  }
+
+  buildWheel();
+})();
+</script>
