@@ -13,6 +13,14 @@ permalink: /resources/
     <h3><a href="/site/number-bond-tool/">Interactive Number Bond Mat</a></h3>
     <p>A simple, distraction-free digital tool for practicing part-part-whole relationships. Perfect for use on tablets or desktops during math lessons.</p>
   </div>
+  <div style="overflow: auto; margin-bottom: 20px;">
+    <h3><a href="/site/break-apart-subtraction/">Break-Apart Subtraction Practice Tool</a></h3>
+    <p>Practice subtracting two-digit numbers by breaking them into tens and ones. Three modes grow with your learner: without regrouping, with regrouping, and mixed, plus a hint button for when they get stuck.</p>
+  </div>
+  <div style="overflow: auto; margin-bottom: 20px;">
+    <h3><a href="/site/spinner/">Number Spinner</a></h3>
+    <p>A clean, simple spinner for games and lessons. Type in the numbers you want, repeats allowed, and spin. No clutter and nothing extra.</p>
+  </div>
 </div>
 
 </div>
