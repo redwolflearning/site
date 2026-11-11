@@ -1,4 +1,3 @@
----
 layout: page
 title: Number Spinner
 permalink: /spinner/
@@ -164,6 +163,16 @@ permalink: /spinner/
     var R = 200;
     var C = 210;
     var i, start, end, p1, p2, path, col, mid, lp, t;
+    var colorIdx = [];
+    var prevCi = -1, tryCi;
+    for (i = 0; i < n; i++) {
+      tryCi = (prevCi + 1) % PALETTE.length;
+      while (i === n - 1 && n > 1 && tryCi === colorIdx[0]) {
+        tryCi = (tryCi + 1) % PALETTE.length;
+      }
+      colorIdx.push(tryCi);
+      prevCi = tryCi;
+    }
     for (i = 0; i < n; i++) {
       start = -90 + i * a;
       end = start + a;
@@ -172,7 +181,7 @@ permalink: /spinner/
       path = document.createElementNS(NS, 'path');
       path.setAttribute('d', 'M ' + C + ' ' + C + ' L ' + p1[0].toFixed(2) + ' ' + p1[1].toFixed(2) +
         ' A ' + R + ' ' + R + ' 0 ' + (a > 180 ? 1 : 0) + ' 1 ' + p2[0].toFixed(2) + ' ' + p2[1].toFixed(2) + ' Z');
-      col = PALETTE[i % PALETTE.length];
+      col = PALETTE[colorIdx[i]];
       path.setAttribute('fill', col.bg);
       path.setAttribute('stroke', '#ffffff');
       path.setAttribute('stroke-width', '2');
@@ -284,3 +293,4 @@ permalink: /spinner/
   buildWheel();
 })();
 </script>
+
