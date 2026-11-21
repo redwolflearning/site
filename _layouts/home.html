@@ -155,3 +155,70 @@ layout: default
   render();
 })();
 </script>
+
+<!-- turkey-week:start -->
+<style>
+#rw-turkey{position:absolute;width:112px;height:auto;z-index:4;cursor:pointer;transition:left 1s ease,top 1s ease}
+#rw-turkey-bubble{position:absolute;z-index:6;background:#fff;border:2px solid #1f3a5f;color:#1f3a5f;font-family:Verdana,sans-serif;font-size:13px;font-weight:bold;padding:4px 12px;border-radius:14px;opacity:0;transition:opacity .3s;pointer-events:none}
+@media (max-width:640px){#rw-turkey{width:84px}}
+</style>
+<img id="rw-turkey" src="{{ "/assets/images/turkey-peek.png" | relative_url }}" alt="" aria-hidden="true">
+<div id="rw-turkey-bubble" aria-hidden="true">Gobble!</div>
+<script>
+(function(){
+  var tk=document.getElementById('rw-turkey'),bub=document.getElementById('rw-turkey-bubble');
+  if(!tk)return;
+  document.body.appendChild(tk);document.body.appendChild(bub);
+  var targets=[];
+  function collect(){
+    targets=[];
+    document.querySelectorAll('.hero-card img, .res-card img, .hero-card, .cta-band').forEach(function(el){
+      el.style.position='relative';el.style.zIndex='5';targets.push(el);
+    });
+  }
+  function rect(el){var r=el.getBoundingClientRect();return{left:r.left+window.scrollX,top:r.top+window.scrollY,right:r.right+window.scrollX,width:r.width,height:r.height};}
+  var cur=null;
+  function hidePos(){
+    if(!cur)return null;
+    var r=rect(cur.el),W=tk.offsetWidth;
+    if(cur.side==='right')return{left:r.right-W-2,top:r.top+Math.max(4,r.height*0.12)};
+    if(cur.side==='left')return{left:r.left+2,top:r.top+Math.max(4,r.height*0.12)};
+    return{left:r.left+r.width/2-W/2,top:r.top+2};
+  }
+  function apply(p){if(!p)return;var maxL=document.documentElement.scrollWidth-tk.offsetWidth-2;tk.style.left=Math.max(0,Math.min(p.left,maxL))+'px';tk.style.top=Math.max(0,p.top)+'px';}
+  function hide(){apply(hidePos());}
+  function peek(){
+    if(!targets.length)return;
+    cur={el:targets[Math.floor(Math.random()*targets.length)],side:['right','left','top'][Math.floor(Math.random()*3)]};
+    hide();
+    setTimeout(function(){
+      var r=rect(cur.el),W=tk.offsetWidth,H=tk.offsetHeight,p=hidePos();
+      if(cur.side==='right')p.left=r.right-W*0.36;
+      else if(cur.side==='left')p.left=r.left-W*0.64;
+      else p.top=r.top-H*0.58;
+      apply(p);
+    },1100);
+    setTimeout(hide,3500);
+  }
+  function loop(){peek();setTimeout(loop,4800+Math.random()*2600);}
+  tk.addEventListener('click',function(){
+    var r=tk.getBoundingClientRect();
+    bub.style.left=(r.left+window.scrollX+r.width*0.55)+'px';
+    bub.style.top=(r.top+window.scrollY-34)+'px';
+    bub.style.opacity='1';
+    setTimeout(function(){bub.style.opacity='0';},1150);
+  });
+  window.addEventListener('load',function(){
+    collect();
+    var hero=document.querySelector('.hero-card img')||targets[0];
+    if(hero){cur={el:hero,side:'right'};hide();}
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      tk.style.transition='none';
+      if(cur){var r=rect(cur.el),W=tk.offsetWidth;tk.style.left=(r.right-W*0.36)+'px';}
+      return;
+    }
+    setTimeout(loop,1200);
+  });
+})();
+</script>
+<!-- turkey-week:end -->
