@@ -249,6 +249,27 @@ permalink: /spinner/
     return true;
   }
 
+  var pendingResult = null;
+  var fallbackTimer = null;
+
+  function finishSpin() {
+    if (!spinning) return;
+    spinning = false;
+    if (fallbackTimer) {
+      clearTimeout(fallbackTimer);
+      fallbackTimer = null;
+    }
+    spinBtn.disabled = false;
+    if (pendingResult !== null) {
+      resultEl.textContent = 'You spun a ' + pendingResult + '!';
+      pendingResult = null;
+    }
+  }
+
+  svg.addEventListener('transitionend', function(e) {
+    if (e.propertyName === 'transform') finishSpin();
+  });
+
   function spin() {
     if (spinning) return;
     spinning = true;
@@ -260,16 +281,10 @@ permalink: /spinner/
     var thetaK = (k + 0.5) * a;
     var delta = ((-thetaK - rotation) % 360 + 360) % 360;
     rotation = rotation + 5 * 360 + delta;
+    pendingResult = values[k];
     svg.style.transition = 'transform 4.4s cubic-bezier(.12,.72,.06,1)';
     svg.style.transform = 'rotate(' + rotation + 'deg)';
-    var done = function() {
-      if (!spinning) return;
-      spinning = false;
-      spinBtn.disabled = false;
-      resultEl.textContent = 'You spun a ' + values[k] + '!';
-    };
-    svg.addEventListener('transitionend', done);
-    setTimeout(done, 5200);
+    fallbackTimer = setTimeout(finishSpin, 5200);
   }
 
   spinBtn.addEventListener('click', spin);
