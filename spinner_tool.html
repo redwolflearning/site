@@ -102,7 +102,7 @@ permalink: /spinner/
 </style>
 
 <div id="spinTool">
-  <p class="sp-intro">A clean classroom spinner. Choose the numbers, then spin.</p>
+  <p class="sp-intro">A clean classroom spinner. Choose numbers or words, then spin.</p>
 
   <div class="sp-stage">
     <div class="sp-pointer" aria-hidden="true"></div>
@@ -116,9 +116,9 @@ permalink: /spinner/
   </div>
 
   <div class="sp-controls">
-    <p class="sp-label"><label for="valuesInput">Numbers on the spinner</label></p>
+    <p class="sp-label"><label for="valuesInput">Numbers or words on the spinner</label></p>
     <input type="text" id="valuesInput" value="1, 1, 2, 2, 3, 3">
-    <p class="sp-note" id="countNote">6 sections. Type any numbers separated by commas. Repeats are fine, each one gets an equal slice.</p>
+    <p class="sp-note" id="countNote">6 sections. Type numbers or words separated by commas. Repeats are fine, each one gets an equal slice. Short entries fit best.</p>
     <p class="sp-label">Quick picks</p>
     <div>
       <button type="button" data-preset="game">Game 1-3</button>
@@ -164,6 +164,17 @@ permalink: /spinner/
     var R = 200;
     var C = 210;
     var i, start, end, p1, p2, path, col, mid, lp, t;
+    var fs = n <= 6 ? 36 : (n <= 10 ? 30 : 24);
+    var maxLen = 1;
+    for (i = 0; i < n; i++) {
+      var L = String(values[i]).length;
+      if (L > maxLen) maxLen = L;
+    }
+    var arcW = 2 * Math.PI * R * 0.68 / n;
+    var maxW = Math.min(arcW * 0.92, 175);
+    if (maxLen * 0.62 * fs > maxW) {
+      fs = Math.max(11, Math.floor(maxW / (maxLen * 0.62)));
+    }
     var colorIdx = [];
     var prevCi = -1, tryCi;
     for (i = 0; i < n; i++) {
@@ -193,7 +204,7 @@ permalink: /spinner/
       t.setAttribute('x', lp[0].toFixed(2));
       t.setAttribute('y', lp[1].toFixed(2));
       t.setAttribute('fill', col.fg);
-      t.setAttribute('font-size', n <= 6 ? '36' : (n <= 10 ? '30' : '24'));
+      t.setAttribute('font-size', String(fs));
       t.setAttribute('font-weight', 'bold');
       t.setAttribute('text-anchor', 'middle');
       t.setAttribute('dominant-baseline', 'central');
@@ -217,7 +228,7 @@ permalink: /spinner/
     hub.setAttribute('stroke', '#1f3a5f');
     hub.setAttribute('stroke-width', '4');
     svg.appendChild(hub);
-    countEl.textContent = n + ' sections. Type any numbers separated by commas. Repeats are fine, each one gets an equal slice.';
+    countEl.textContent = n + ' sections. Type numbers or words separated by commas. Repeats are fine, each one gets an equal slice. Short entries fit best.';
   }
 
   function parseValues() {
@@ -226,9 +237,8 @@ permalink: /spinner/
     for (var i = 0; i < raw.length; i++) {
       var tok = raw[i].trim();
       if (tok === '') continue;
-      var num = Number(tok);
-      if (!isFinite(num)) return null;
-      out.push(num);
+      if (tok.length > 20) tok = tok.slice(0, 20);
+      out.push(tok);
     }
     return out;
   }
@@ -236,7 +246,7 @@ permalink: /spinner/
   function applyValues() {
     var parsed = parseValues();
     if (!parsed || parsed.length < 2 || parsed.length > 16) {
-      errorEl.textContent = 'Use between 2 and 16 numbers, separated by commas.';
+      errorEl.textContent = 'Use between 2 and 16 entries, separated by commas.';
       return false;
     }
     errorEl.textContent = '';
@@ -261,7 +271,7 @@ permalink: /spinner/
     }
     spinBtn.disabled = false;
     if (pendingResult !== null) {
-      resultEl.textContent = 'You spun a ' + pendingResult + '!';
+      resultEl.textContent = 'It landed on ' + pendingResult + '!';
       pendingResult = null;
     }
   }
@@ -309,5 +319,6 @@ permalink: /spinner/
   buildWheel();
 })();
 </script>
+
 
 
