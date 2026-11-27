@@ -4,20 +4,92 @@ layout: default
 
 <div class="home">
 
+<!-- christmas-fx:start -->
+<div class="christmas-lights" aria-hidden="true">
+  <span class="bulb c-red" style="animation-delay: 0.00s"></span>
+  <span class="bulb c-gold" style="animation-delay: 0.40s"></span>
+  <span class="bulb c-green" style="animation-delay: 0.80s"></span>
+  <span class="bulb c-blue" style="animation-delay: 1.20s"></span>
+  <span class="bulb c-red" style="animation-delay: 0.20s"></span>
+  <span class="bulb c-gold" style="animation-delay: 0.60s"></span>
+  <span class="bulb c-green" style="animation-delay: 1.00s"></span>
+  <span class="bulb c-blue" style="animation-delay: 1.40s"></span>
+  <span class="bulb c-red" style="animation-delay: 0.30s"></span>
+  <span class="bulb c-gold" style="animation-delay: 0.90s"></span>
+  <span class="bulb c-green" style="animation-delay: 0.50s"></span>
+  <span class="bulb c-blue" style="animation-delay: 1.10s"></span>
+  <span class="bulb c-red" style="animation-delay: 0.70s"></span>
+  <span class="bulb c-gold" style="animation-delay: 1.30s"></span>
+  <span class="bulb c-green" style="animation-delay: 0.10s"></span>
+  <span class="bulb c-blue" style="animation-delay: 1.50s"></span>
+  <span class="bulb c-red" style="animation-delay: 0.45s"></span>
+  <span class="bulb c-gold" style="animation-delay: 0.85s"></span>
+  <span class="bulb c-green" style="animation-delay: 1.25s"></span>
+  <span class="bulb c-blue" style="animation-delay: 0.15s"></span>
+  <span class="bulb c-red" style="animation-delay: 0.55s"></span>
+  <span class="bulb c-gold" style="animation-delay: 0.95s"></span>
+  <span class="bulb c-green" style="animation-delay: 1.35s"></span>
+  <span class="bulb c-blue" style="animation-delay: 0.75s"></span>
+  <span class="bulb c-red" style="animation-delay: 1.15s"></span>
+  <span class="bulb c-gold" style="animation-delay: 0.25s"></span>
+  <span class="bulb c-green" style="animation-delay: 0.65s"></span>
+  <span class="bulb c-blue" style="animation-delay: 1.05s"></span>
+</div>
+<canvas id="christmas-snow" aria-hidden="true"></canvas>
+<style>
+.christmas-lights{display:flex;justify-content:space-between;align-items:flex-start;padding:2px 6px 0;border-top:3px solid #1f5130;background:transparent}
+.christmas-lights .bulb{width:12px;height:16px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;margin-top:2px;animation:rw-twinkle 1.6s ease-in-out infinite}
+.christmas-lights .c-red{background:#e63946;box-shadow:0 0 8px 2px rgba(230,57,70,.55)}
+.christmas-lights .c-gold{background:#f4b400;box-shadow:0 0 8px 2px rgba(244,180,0,.55)}
+.christmas-lights .c-green{background:#2a9d4a;box-shadow:0 0 8px 2px rgba(42,157,74,.55)}
+.christmas-lights .c-blue{background:#2f6fb2;box-shadow:0 0 8px 2px rgba(47,111,178,.55)}
+@keyframes rw-twinkle{0%,100%{opacity:1}50%{opacity:.25}}
+#christmas-snow{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:50}
+@media (prefers-reduced-motion: reduce){
+  .christmas-lights .bulb{animation:none}
+}
+</style>
+<script>
+(function(){
+  var canvas=document.getElementById('christmas-snow');
+  if(!canvas)return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var ctx=canvas.getContext('2d'),flakes=[],W=0,H=0;
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+  function makeFlake(){return{x:Math.random()*W,y:Math.random()*H,r:1+Math.random()*2.5,speed:.4+Math.random()*.9,drift:(Math.random()-.5)*.6,phase:Math.random()*Math.PI*2};}
+  resize();
+  for(var i=0;i<70;i++)flakes.push(makeFlake());
+  window.addEventListener('resize',resize);
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='rgba(255,255,255,.9)';
+    for(var i=0;i<flakes.length;i++){
+      var f=flakes[i];
+      f.y+=f.speed;f.phase+=.01;f.x+=Math.sin(f.phase)*f.drift;
+      if(f.y>H+4){f.y=-4;f.x=Math.random()*W;}
+      ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+</script>
+<!-- christmas-fx:end -->
+
   <section class="hero">
     <div class="hero-text">
       <p class="hero-eyebrow">Homeschool Math Resources</p>
       <h1>Math that meets kids where they are.</h1>
       <p class="hero-sub">Supporting students, families, and educators through meaningful learning, strong foundations, and flexible educational approaches.</p>
       <div class="hero-actions">
-        <a class="btn btn-gold" href="https://www.teacherspayteachers.com/Product/Thanksgiving-Color-by-Number-FREEBIE-Missing-Part-Practice-K-1st-Math-18171888">Get the Free Thanksgiving Printable</a>
+        <a class="btn btn-gold" href="https://www.teacherspayteachers.com/Product/Christmas-Tree-Mystery-Picture-FREEBIE-Number-Bonds-K-1st-Grade-Math-18416408">Get the Free Christmas Tree Page</a>
         <a class="btn btn-navy" href="{{ "/resources/" | relative_url }}">Browse Resources</a>
       </div>
     </div>
 
     <div class="hero-card">
-      <img src="{{ "/assets/images/thanksgiving-color-by-missing-part.png" | relative_url }}" alt="Thanksgiving Color by the Missing Part free coloring pages cover">
-      <p class="hero-card-caption">Free right now: two Thanksgiving coloring pages with real math inside, for grades K-1.</p>
+      <img src="{{ "/assets/images/christmas-tree-mystery.png" | relative_url }}" alt="Finished Christmas tree mystery picture, colored in by solving number bonds">
+      <p class="hero-card-caption">Free right now: a Christmas tree mystery picture with real math inside, for grades K-1. Solve the number bonds, then color to reveal the tree.</p>
     </div>
   </section>
 
@@ -46,10 +118,10 @@ layout: default
   <h2>Featured Resources</h2>
   <div class="card-grid">
     <div class="res-card">
-      <img src="{{ "/assets/images/thanksgiving-color-by-missing-part.png" | relative_url }}" alt="Thanksgiving Color by the Missing Part free coloring pages cover">
-      <h3>Thanksgiving Color by the Missing Part</h3>
-      <p>Two free coloring pages with real math inside. Solve each number sentence, check the key, and color. Grades K-1.</p>
-      <p><a class="btn btn-gold" href="https://www.teacherspayteachers.com/Product/Thanksgiving-Color-by-Number-FREEBIE-Missing-Part-Practice-K-1st-Math-18171888">Get the Freebie</a></p>
+      <img src="{{ "/assets/images/christmas-stocking-mystery.png" | relative_url }}" alt="Finished Christmas stocking mystery picture, colored in by solving number bonds">
+      <h3>Christmas Mystery Pictures BUNDLE</h3>
+      <p>Six Christmas mystery pictures in two formats: number bonds and missing addends. Solve, check the key, and color to reveal each picture. Grades K-1.</p>
+      <p><a class="btn btn-gold" href="https://www.teacherspayteachers.com/Product/Christmas-Mystery-Pictures-BUNDLE-Number-Bonds-Equations-K-1st-Grade-Math-18453594">Get the Bundle, $5</a></p>
     </div>
     <div class="res-card">
       <img src="{{ "/assets/images/number_bonds_partners_of_10.png" | relative_url }}" alt="Partners of 10 number bond worksheet preview">
@@ -155,70 +227,3 @@ layout: default
   render();
 })();
 </script>
-
-<!-- turkey-week:start -->
-<style>
-#rw-turkey{position:absolute;width:112px;height:auto;z-index:4;cursor:pointer;transition:left 1s ease,top 1s ease}
-#rw-turkey-bubble{position:absolute;z-index:6;background:#fff;border:2px solid #1f3a5f;color:#1f3a5f;font-family:Verdana,sans-serif;font-size:13px;font-weight:bold;padding:4px 12px;border-radius:14px;opacity:0;transition:opacity .3s;pointer-events:none}
-@media (max-width:640px){#rw-turkey{width:84px}}
-</style>
-<img id="rw-turkey" src="{{ "/assets/images/turkey-peek.png" | relative_url }}" alt="" aria-hidden="true">
-<div id="rw-turkey-bubble" aria-hidden="true">Gobble!</div>
-<script>
-(function(){
-  var tk=document.getElementById('rw-turkey'),bub=document.getElementById('rw-turkey-bubble');
-  if(!tk)return;
-  document.body.appendChild(tk);document.body.appendChild(bub);
-  var targets=[];
-  function collect(){
-    targets=[];
-    document.querySelectorAll('.hero-card img, .res-card img, .hero-card, .cta-band').forEach(function(el){
-      el.style.position='relative';el.style.zIndex='5';targets.push(el);
-    });
-  }
-  function rect(el){var r=el.getBoundingClientRect();return{left:r.left+window.scrollX,top:r.top+window.scrollY,right:r.right+window.scrollX,width:r.width,height:r.height};}
-  var cur=null;
-  function hidePos(){
-    if(!cur)return null;
-    var r=rect(cur.el),W=tk.offsetWidth;
-    if(cur.side==='right')return{left:r.right-W-2,top:r.top+Math.max(4,r.height*0.12)};
-    if(cur.side==='left')return{left:r.left+2,top:r.top+Math.max(4,r.height*0.12)};
-    return{left:r.left+r.width/2-W/2,top:r.top+2};
-  }
-  function apply(p){if(!p)return;var maxL=document.documentElement.scrollWidth-tk.offsetWidth-2;tk.style.left=Math.max(0,Math.min(p.left,maxL))+'px';tk.style.top=Math.max(0,p.top)+'px';}
-  function hide(){apply(hidePos());}
-  function peek(){
-    if(!targets.length)return;
-    cur={el:targets[Math.floor(Math.random()*targets.length)],side:['right','left','top'][Math.floor(Math.random()*3)]};
-    hide();
-    setTimeout(function(){
-      var r=rect(cur.el),W=tk.offsetWidth,H=tk.offsetHeight,p=hidePos();
-      if(cur.side==='right')p.left=r.right-W*0.36;
-      else if(cur.side==='left')p.left=r.left-W*0.64;
-      else p.top=r.top-H*0.58;
-      apply(p);
-    },1100);
-    setTimeout(hide,3500);
-  }
-  function loop(){peek();setTimeout(loop,4800+Math.random()*2600);}
-  tk.addEventListener('click',function(){
-    var r=tk.getBoundingClientRect();
-    bub.style.left=(r.left+window.scrollX+r.width*0.55)+'px';
-    bub.style.top=(r.top+window.scrollY-34)+'px';
-    bub.style.opacity='1';
-    setTimeout(function(){bub.style.opacity='0';},1150);
-  });
-  window.addEventListener('load',function(){
-    collect();
-    var hero=document.querySelector('.hero-card img')||targets[0];
-    if(hero){cur={el:hero,side:'right'};hide();}
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      tk.style.transition='none';
-      if(cur){var r=rect(cur.el),W=tk.offsetWidth;tk.style.left=(r.right-W*0.36)+'px';}
-      return;
-    }
-    setTimeout(loop,1200);
-  });
-})();
-</script>
-<!-- turkey-week:end -->
